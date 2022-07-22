@@ -7,6 +7,58 @@ public class Main {
 
         StringBuilder log = new StringBuilder("Creating directories and files " + "\n");
 
+        String[] directories = {"D:\\Games\\src", "D:\\Games\\src\\main",
+                                "D:\\Games\\src\\test", "D:\\Games\\res",
+                                "D:\\Games\\res\\drawables",
+                                "D:\\Games\\res\\vectors", "D:\\Games\\res\\icons",
+                                "D:\\Games\\savegames", "D:\\Games\\temp"};
+
+        String[] files = {"D:\\Games\\src\\main\\Main.java", "D:\\Games\\src\\main\\Utils.java",
+                          "D:\\Games\\temp\\temp.txt"};
+
+        for (int i = 0; i < directories.length; i++) {
+            File directory = new File(directories[i]);
+            if (directory.mkdir()) {
+                System.out.println(directory.getName() + "- directory was created");
+            } else if (directory.exists()) {
+                System.out.println(directory.getName() + "- directory already exists");
+            } else System.out.println("- directory has not created");
+            log.append(directory.getName() + "- was created" + "\n");
+        }
+
+        for (int i = 0; i < files.length; i++) {
+            File file = new File(files[i]);
+            if (file.createNewFile()) {
+                System.out.println(file.getName() + "- file was created");
+            } else if (file.exists()) {
+                System.out.println(file.getName() + "- file already exists");
+            } else System.out.println("- file has not created");
+            log.append(file.getName() + "- was created" + "\n");
+        }
+
+        File newLog = new File("D:\\Games\\temp\\temp.txt");
+        try (FileWriter fw = new FileWriter(newLog)) {
+            fw.write(log.toString());
+        } catch (IOException e) {
+            e.getMessage();
+        }
+    }
+}
+
+
+
+
+
+//OR
+/*import java.io.*;
+
+public class Main {
+
+
+    public static void main(String[] args) throws IOException {
+
+        StringBuilder log = new StringBuilder("Creating directories and files " + "\n");
+
         String[] message = {" - directory has created", " - file has created",
                 " - hasn't created", " already exists"};
         String path = "D:\\Games\\";
@@ -85,7 +137,7 @@ public class Main {
         }
     }
 }
-
+*/
 
 /* OR
 // import java.io.*;
